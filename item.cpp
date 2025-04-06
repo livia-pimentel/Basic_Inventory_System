@@ -30,3 +30,9 @@ void Item::setQuantity(int quantity) {
 void Item::setPrice(double price) {
     this -> price = price;
 }
+
+void Item::display() const {
+    std::cout << "Name: " << name << '\n';
+    std::cout << "Quantity: " << quantity << '\n';
+    std::cout << "Price: " << price << '\n';
+}
