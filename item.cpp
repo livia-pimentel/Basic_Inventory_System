@@ -2,12 +2,12 @@
 #include <iostream>
 
 // Constructor 
-Item::Item(std::string name, int quantity, double price); // Declares the constructor of the class Item
-    : name(name), quantity(quantity), price(price){} // Initialization list
+Item::Item(std::string name, int quantity, double price): name(name), quantity(quantity), price(price){} // Declares the constructor of the class Item
+     // Initialization list
 
 // Getters
 std::string Item::getName() const {
-    return name
+    return name;
 }
 
 int Item::getQuantity() const {
