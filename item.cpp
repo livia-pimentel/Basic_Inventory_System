@@ -3,7 +3,7 @@
 
 // Constructor 
 Item::Item(std::string name, int quantity, double price): name(name), quantity(quantity), price(price){} // Declares the constructor of the class Item
-     // Initialization list
+// Initialization list
 
 // Getters
 std::string Item::getName() const {
