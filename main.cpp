@@ -8,17 +8,19 @@ int main() {
     inventory.readFile("inventory.txt");
     
     // Create the object item
-    Item newItem("PlayStation", 10, 750.59);
+    // Item newItem("PlayStation", 10, 750.59);
 
     // Add the object item 
-    inventory.addItem(newItem);
+    // inventory.addItem(newItem);
+
+    inventory.deleteItem("Laptop");
 
     // Displays inventory list
     std::cout << "Inventory List:\n";
     inventory.displayInventory();
 
     // Save the inventory
-    inventory.writeFile("inventory.txt");
+    // inventory.writeFile("inventory.txt");
 
     std::cout << "\nEnd of Inventory List\n";
 
