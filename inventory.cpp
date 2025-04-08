@@ -55,3 +55,14 @@ void Inventory::displayInventory() const {
 void Inventory::addItem(Item item) {
     items.push_back(item);
 }
+
+// Delete item
+void Inventory::deleteItem(std::string name) {
+    for (auto i = items.begin(); i != items.end(); ++i) {
+        if (i -> getName() == name) {
+            items.erase(i);
+            return;
+        };
+    }
+    std::cout << "Item " << name << " not found.\n";
+}
