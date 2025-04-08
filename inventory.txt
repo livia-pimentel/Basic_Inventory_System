@@ -28,3 +28,4 @@ VGA-Cable 50 6.2
 DVI-Cable 30 9.5
 DisplayPort-Cable 20 12
 Audio-Cable 100 7.8
+PlayStation 10 750.59
