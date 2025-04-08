@@ -50,3 +50,8 @@ void Inventory::displayInventory() const {
         std::cout << "--------------------\n";
     }
 }
+
+// Add new item
+void Inventory::addItem(Item item) {
+    items.push_back(item);
+}
