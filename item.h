@@ -4,23 +4,29 @@
 #include <string>
 
 class Item {
-private:
-    std::string name;
-    int quantity;
-    double price;
 
-public:
-    Item(std::string name, int quantity, double price);
+    // Attributes of the item
+    private:
+        std::string name;
+        int quantity;
+        double price;
 
-    std::string getName() const;
-    int getQuantity() const;
-    double getPrice() const;
+    public:
+        // Constructor - Initializes the attributes
+        Item(std::string name, int quantity, double price);
 
-    void setName(std::string name);
-    void setQuantity(int quantity);
-    void setPrice(double price);
+        // Getters - Allow access to the attributes
+        std::string getName() const;
+        int getQuantity() const;
+        double getPrice() const;
 
-    void display() const;
+        // Setters - Allow modify the attributes
+        void setName(std::string name);
+        void setQuantity(int quantity);
+        void setPrice(double price);
+
+        // Display data of the item
+        void display() const;
 };
 
 #endif
