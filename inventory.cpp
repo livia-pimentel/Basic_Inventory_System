@@ -1,29 +1,52 @@
 #include "inventory.h"
+#include "item.h"
 #include <string>
 #include <vector>
 #include <iostream>
 #include <fstream>
+#include <sstream> 
 
-class Inventory {
-    private:
-    std::vector<std::string> items;
+void Inventory::readFile(std::string nameFile) {
+    std::ifstream file(nameFile);
+    if (file.fail()) {
+        std::cerr << "Error opening file: " << nameFile << '\n';
+        return;
+    }
 
-    public:
-        // Try to open the inventory file, if it does not exist will appear an error message
-        void loadFile(std::string filename) {
-            std::ifstream file(filename);
-            if (file.fail()) {
-                std::cerr << "Error opening file: " << filename << '\n';
-                return;
-            }
-            
-            std::string item;
-            while (std::getline(file, item)) { // Read file line. Each read line is stored in the item variable that is added to the vector
-                items.push_back(item);
-            }
-            
-            file.close();
+    std::string line;
+    while (std::getline(file, line)) {
+        std::stringstream ss(line);
+        std::string name;
+        int quantity;
+        double price;
+
+        if (ss >> name >> quantity >> price) {
+            items.push_back(Item(name, quantity, price));
+        } else {
+            std::cerr << "Error reading line: " << line << '\n';
         }
+    }
 
+    file.close();
+}
 
+void Inventory::writeFile(std::string nameFile) {
+    std::ofstream file(nameFile);
+    if (file.fail()) {
+        std::cerr << "Error opening file: " << nameFile << '\n';
+        return;
+    }
+
+    for (const auto& item : items) {
+        file << item.getName() << " " << item.getQuantity() << " " << item.getPrice() << '\n';
+    }
+
+    file.close();
+}
+
+void Inventory::displayInventory() const {
+    for (const auto& item : items) {
+        item.display();
+        std::cout << "--------------------\n";
+    }
 }
