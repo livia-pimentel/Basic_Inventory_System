@@ -61,6 +61,7 @@ void Inventory::deleteItem(std::string name) {
     for (auto i = items.begin(); i != items.end(); ++i) {
         if (i -> getName() == name) {
             items.erase(i);
+            std::cout << name + " deleted successfully!";
             return;
         };
     }
