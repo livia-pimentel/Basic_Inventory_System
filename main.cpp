@@ -3,6 +3,8 @@
 #include <cctype>
 #include <algorithm>
 #include <string>
+#include <limits>
+#include <regex>
 
 
 // Validate item name
@@ -17,6 +19,7 @@ bool isValidName(const std::string& name) {
     return true;   
 }
 
+// Capitalize Name Item
 std::string capitalizeName(std::string name) {
     if (!name.empty()) {
         name[0] = std::toupper(name[0]);
@@ -27,6 +30,12 @@ std::string capitalizeName(std::string name) {
     }
     
     return name;
+}
+
+// Verify if the string is a valid number 
+bool isNumber(const std::string& str) {
+    std::regex numberRegex(R"([+-]?\d+(\.\d+)?)");
+    return std::regex_match(str, numberRegex);
 }
 
 int main() {
@@ -62,11 +71,30 @@ int main() {
                     
                 } while (!isValidName(line));
                 line = capitalizeName(line);
-                std::cout << "Enter item quantity: ";
-                std:: cin >> quantity;
-                std::cout << "Enter item price: ";
-                std:: cin >> price;
-                std::cin.ignore(); // Clear the input buffer
+                while (true) {
+                    std::cout << "Enter item quantity: ";
+                    if (std::cin >> quantity) {
+                        break;
+                    } else {
+                        std::cin.clear(); // Clear the error
+                        std::cout << "Invalid quantity. Please enter an integer.\n";
+                        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // Clear buffer 
+                    }
+                }
+                std::string priceString;
+                while (true) {
+                    std::cout << "Enter item price: ";
+                    std::getline(std::cin, priceString);
+                    if (isNumber(priceString)) {
+                        std::stringstream ss(priceString);
+                        ss >> price;
+                        break; 
+                    } else {
+                        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // Clear buffer 
+                        std::cin.clear(); // Clear the error
+                        std::cout << "Invalid price. Please enter a number.\n";
+                    }
+                }
                 inventory.addItem(Item(line, quantity, price));
                 inventory.writeFile("inventory.txt"); // Salve after add
                 break;
