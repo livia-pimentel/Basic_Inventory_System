@@ -13,16 +13,24 @@ int main() {
     // Add the object item 
     // inventory.addItem(newItem);
 
-    inventory.deleteItem("Laptop");
+    // inventory.deleteItem("Laptop");
+
+    // Search Item
+    Item foundItem = inventory.searchItem("Laptop");
+
+    if (foundItem.getName() != "") {
+        std::cout << "Item found:\n";
+        foundItem.display();
+    }
 
     // Displays inventory list
-    std::cout << "Inventory List:\n";
-    inventory.displayInventory();
+    // std::cout << "Inventory List:\n";
+    // inventory.displayInventory();
 
     // Save the inventory
     // inventory.writeFile("inventory.txt");
 
-    std::cout << "\nEnd of Inventory List\n";
+    // std::cout << "\nEnd of Inventory List\n";
 
     return 0;
 }
