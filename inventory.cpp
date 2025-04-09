@@ -66,3 +66,15 @@ void Inventory::deleteItem(std::string name) {
     }
     std::cout << "Item " << name << " not found.\n";
 }
+
+Item Inventory::searchItem(std::string name) {
+    for (const auto& item : items) {
+        if (item.getName() == name) {
+            return item; // Returns the item found
+        }  
+    }
+
+    // If the item is not found, displays the message in and returns an empty item
+    std::cout << "Item not found.\n";
+    return Item("", 0, 0.0); 
+}
