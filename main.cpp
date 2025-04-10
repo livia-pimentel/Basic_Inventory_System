@@ -34,7 +34,7 @@ std::string capitalizeName(std::string name) {
 
 // Verify if the string is a valid number 
 bool isNumber(const std::string& str) {
-    std::regex numberRegex(R"([+-]?\d+(\.\d+)?)");
+    std::regex numberRegex(R"([+-]?\d+(\.\d*)?)");
     return std::regex_match(str, numberRegex);
 }
 
@@ -71,9 +71,12 @@ int main() {
                     
                 } while (!isValidName(line));
                 line = capitalizeName(line);
+                std::string quantityString;
                 while (true) {
                     std::cout << "Enter item quantity: ";
-                    if (std::cin >> quantity) {
+                    std::getline(std::cin, quantityString);
+                    if (std::all_of(quantityString.begin(), quantityString.end(), ::isdigit)) {
+                        quantity = std::stoi(quantityString);
                         break;
                     } else {
                         std::cin.clear(); // Clear the error
@@ -125,11 +128,12 @@ int main() {
                 break;
             }
             case 5:
+                std::cout << "Exiting the system...\n";
                 break;
             default:
                 std::cout << "Invalid choice.\n";
         }
-    } while (choice != 0);
+    } while (choice != 5);
     
     // Salve the inventory file
     inventory.writeFile("inventory.txt");
